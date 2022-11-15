@@ -5,7 +5,7 @@ minute=1
 while [[ Hour -le 12 ]];
 do
 echo "Hour: $Hour"
-while [[ minute -le 60 ]];
+while [[ minute -le 59 ]];
 do
 echo $minute
 (( minute++ ))
