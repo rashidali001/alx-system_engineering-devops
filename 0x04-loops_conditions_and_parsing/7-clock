@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# 7 -clock task
+Hour=0
+minute=1
+while [[ Hour -le 12 ]];
+do
+echo "Hour: $Hour"
+while [[ minute -le 60 ]];
+do
+echo $minute
+(( minute++ ))
+done
+minute=1
+(( Hour++ ))
+done
