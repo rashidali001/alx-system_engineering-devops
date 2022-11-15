@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+# FizzBuzz task
+count=1
+until [[ $count -gt 100 ]]
+do
+if [[ $(( count % 3 )) -eq 0 ]] && [[ $(( count % 5 )) -eq 0 ]];then
+	echo "FizzBuzz"
+	(( count++ ))
+	continue
+fi
+if [[ $(( count % 3 )) -eq 0 ]];then
+	echo "Fizz"
+	(( count++ ))
+	continue
+fi
+if [[ $(( count % 5 )) -eq 0 ]];then
+	echo "Buzz"
+	(( count++ ))
+	continue
+fi
+echo "$count"
+(( count++ ))
+done
