@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# prints "Best school" 9 times then say Hi
+count=1
+while [[ count -le 10 ]];
+do
+echo "Best School"
+if [[ count -eq 9 ]];
+then
+echo "Hi"
+fi
+(( count++ ))
+done
