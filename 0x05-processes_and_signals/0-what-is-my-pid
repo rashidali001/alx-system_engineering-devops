@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# getting the pid of the file
+echo "$$"
