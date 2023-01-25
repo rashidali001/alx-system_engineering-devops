@@ -1,0 +1,1 @@
+This is an external document tranfer to the server by scp command.
