@@ -2,13 +2,6 @@
 '''
 0-gather_data_from_an_API - gets data from an API
 '''
-<<<<<<< HEAD
-#!/usr/bin/python3
-=======
-import json
-from urllib import request
-import sys
->>>>>>> 245728e2d6bbfaeca3609de8d25088e5709df80b
 
 
 if __name__ == "__main__":
@@ -30,23 +23,22 @@ if __name__ == "__main__":
     finishedTasks = 0
 
     for obj in data:
-        if obj['id'] == 2:
+        if obj.get('id') == 2:
             user = obj
 
     for obj in userData:
-        if obj['userId'] == 2:
-            if obj['completed'] == True:
+        if obj.get('userId') == 2:
+            if obj.get('completed') == True:
                 finishedTasks += 1
             totalTasks += 1
 
-    userName = user['name']
+    userName = user.get('name')
 
     print(f"Employee {userName} "
           f"is done with tasks ({finishedTasks}/{totalTasks}):")
 
     for obj in userData:
-        if obj['userId'] == 2:
-            if obj['completed'] == True:
+        if obj.get('userId') == 2:
+            if obj.get('completed') == True:
                 print("\t ", end="")
                 print(obj['title'])
-                
