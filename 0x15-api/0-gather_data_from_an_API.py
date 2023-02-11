@@ -1,7 +1,14 @@
+#!/usr/bin/python3
 '''
 0-gather_data_from_an_API - gets data from an API
 '''
+<<<<<<< HEAD
 #!/usr/bin/python3
+=======
+import json
+from urllib import request
+import sys
+>>>>>>> 245728e2d6bbfaeca3609de8d25088e5709df80b
 
 
 if __name__ == "__main__":
