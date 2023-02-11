@@ -8,7 +8,7 @@ if __name__ == "__main__":
     import json
     from urllib import request
     import sys
-    #argument = int(sys.argv[1])
+    argument = int(sys.argv[1])
     resp = request.urlopen('https://jsonplaceholder.typicode.com/users')
     resp2 = request.urlopen('https://jsonplaceholder.typicode.com/todos')
     html = resp.read().decode("UTF-8")
@@ -23,11 +23,11 @@ if __name__ == "__main__":
     finishedTasks = 0
 
     for obj in data:
-        if obj.get('id') == 2:
+        if obj.get('id') == argument:
             user = obj
 
     for obj in userData:
-        if obj.get('userId') == 2:
+        if obj.get('userId') == argument:
             if obj.get('completed') == True:
                 finishedTasks += 1
             totalTasks += 1
@@ -38,7 +38,7 @@ if __name__ == "__main__":
           f"is done with tasks ({finishedTasks}/{totalTasks}):")
 
     for obj in userData:
-        if obj.get('userId') == 2:
+        if obj.get('userId') == argument:
             if obj.get('completed') == True:
                 print("\t ", end="")
                 print(obj['title'])
