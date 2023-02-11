@@ -8,6 +8,9 @@ package to fetch data from an API
 
 
 if __name__ == "__main__":
+    """
+    Main code wriiten below
+    """
     import json
     from urllib import request
     import sys
