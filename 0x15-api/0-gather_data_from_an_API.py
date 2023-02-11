@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-0-gather_data_from_an_API - gets data from an API
+gets data from an API
 A python script that takes an argument
 from the command line and uses its urllib
 package to fetch data from an API
