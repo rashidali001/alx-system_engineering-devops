@@ -1,7 +1,7 @@
+#!/usr/bin/python3
 '''
 0-gather_data_from_an_API - gets data from an API
 '''
-#!/usr/bin/python3
 import json
 from urllib import request
 import sys
