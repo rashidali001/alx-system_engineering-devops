@@ -1,50 +1,40 @@
 #!/usr/bin/python3
-"""
-gets data from an API
-A python script that takes an argument
-from the command line and uses its urllib
-package to fetch data from an API
-"""
+''' Using the request module to get data from an API '''
 
 
-if __name__ == "__main__":
-    """
-    Main code wriiten below
-    """
-    import json
+if __name__ == "__main__": # Prevents our code from being imported
     from urllib import request
     import sys
-    argument = int(sys.argv[1])
-    resp = request.urlopen('https://jsonplaceholder.typicode.com/users')
-    resp2 = request.urlopen('https://jsonplaceholder.typicode.com/todos')
-    html = resp.read().decode("UTF-8")
-    html2 = resp2.read().decode("UTF-8")
+    import json
+    
+    id = int(sys.argv[1])
 
-    # converts the JSON file to an object literal
-    data = json.loads(html)
-    userData = json.loads(html2)
+    req = request.urlopen("https://jsonplaceholder.typicode.com/users")
+    req_json = req.read().decode('utf=8')
+    users_list = json.loads(req_json)
 
-    user = ''
-    totalTasks = 0
-    finishedTasks = 0
+    completed_tasks = 0
+    total_tasks = 0
 
-    for obj in data:
-        if obj.get('id') == argument:
-            user = obj
+    for user in users_list:
+        if user.get("id") == id:
+            name = user.get("name")
 
-    for obj in userData:
-        if obj.get('userId') == argument:
-            if obj.get('completed') == True:
-                finishedTasks += 1
-            totalTasks += 1
+    req = request.urlopen("https://jsonplaceholder.typicode.com/todos")
+    req_json = req.read().decode("utf-8")
+    users_tasks = json.loads(req_json)
+    
+    for user_task in users_tasks:
+        if user_task.get("userId") == id:
+            total_tasks += 1
+            if user_task.get("completed") == True:
+                completed_tasks += 1
 
-    userName = user.get('name')
+    print(f"Employee {name} is done with tasks({completed_tasks}/{total_tasks}):")
 
-    print(f"Employee {userName} "
-          f"is done with tasks ({finishedTasks}/{totalTasks}):")
-
-    for obj in userData:
-        if obj.get('userId') == argument:
-            if obj.get('completed') == True:
-                print("\t ", end="")
-                print(obj['title'])
+    for user_task in users_tasks:
+        if user_task.get("userId") == id:
+            if user_task.get("completed") == True:
+                
+                print("\t" , user_task.get("title"))           
+            
