@@ -6,8 +6,10 @@
 
 if __name__ == "__main__": # Prevents our code from being imported
     from urllib import request
+    import csv
     import sys
     import json
+
     
     id = int(sys.argv[1])
 
@@ -26,17 +28,20 @@ if __name__ == "__main__": # Prevents our code from being imported
     req_json = req.read().decode("utf-8")
     users_tasks = json.loads(req_json)
     
+    user_task_in_list = []
     for user_task in users_tasks:
         if user_task.get("userId") == id:
-            total_tasks += 1
-            if user_task.get("completed") == True:
-                completed_tasks += 1
+            new_dict = {}
+            new_dict['USER_ID'] = user_task.get("userId")
+            new_dict['USERNAME'] = name
+            new_dict['TASK_COMPLETED_STATUS'] = user_task.get("completed")
+            new_dict['TASK_TITLE'] = user_task.get("title")
+            user_task_in_list.append(new_dict)
+    
+    filename = f"{id}.csv"
 
-    print(f"Employee {name} is done with tasks({completed_tasks}/{total_tasks}):")
+    with open(filename, "w", newline="") as file:
+        writer = csv.DictWriter(file, fieldnames=user_task_in_list[0].keys())
 
-    for user_task in users_tasks:
-        if user_task.get("userId") == id:
-            if user_task.get("completed") == True:
-                
-                print("\t" , user_task.get("title"))           
-            
+        for row in user_task_in_list:
+            writer.writerow(row)
