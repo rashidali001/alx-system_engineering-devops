@@ -15,21 +15,25 @@ if __name__ == "__main__":
     todo_data = get("https://jsonplaceholder.typicode.com/todos").json()
     completed = 0
     incompleted = 0
+    total= 0
+    completed_task_title_list = list()
     
     users_todos = list()
     for user_todo in todo_data:
         if user_todo["userId"] == int(user):
             users_todos.append(user_todo)
     
-    print(name)
     for task in users_todos:
         if task["completed"] == True:
             completed += 1
+            completed_task_title_list.append(task["title"])
         else:
             incompleted += 1
-    
-    print(f"completed taks: {completed}")
-    print(f"Incompleted taks: {incompleted}")
+    total = completed + incompleted
+
+    print(f"Employee {name} is done with tasks({completed}/{total}):")
+    for title in completed_task_title_list:
+        print(f"\t {title}")
 
 
         
