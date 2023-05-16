@@ -34,11 +34,7 @@ if __name__ == "__main__":
     print(f"Employee {name} is done with tasks({completed}/{total}):")
     for title in completed_task_title_list:
         print(f"\t {title}")
-
-
         
-        
-
 
 
 
