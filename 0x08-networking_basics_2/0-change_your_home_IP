@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+# Updates hostfile to change localhost to 127.0.0.2 and facebook.com to 8.8.8.8
+# (To be run in Docker container; else revert hostfile back)
+
+
+HOST_FILE="/etc/hosts"
+HOST_COPY="temp_host"
+HOST_BAK="bak_host"
+WILD_CARD="127*.*localhost"
+LOCAL_HOST="	127.0.0.2	localhost"
+FACEBOOK="	8.8.8.8		facebook.com"
+
+# Create a temporary hostfile and back up the original
+cp "${HOST_FILE}" "${HOST_COPY}"
+cp "${HOST_FILE}" "${HOST_BAK}"
+
+# Find and replace all occurrences of localhost
+DONE=0
+
+cat -n "${HOST_FILE}" | grep "${WILD_CARD}" | sed 's/  \+ //' | cut -c 1-1 |
+while read -r i; do
+	sed -i "$((i+DONE))d" ${HOST_COPY}
+	sed -i "$((i+DONE))i ${LOCAL_HOST}" "${HOST_COPY}"
+
+	# Add facebook only once 
+	[[ $DONE -eq 0 ]] && sed -i "$((i+1))i ${FACEBOOK}" "${HOST_COPY}"
+	DONE=1
+done
+
+cp -f "${HOST_COPY}" "${HOST_FILE}"
