@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+git add .
+git commit -m "web stack debugging 2"
+git push
