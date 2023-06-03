@@ -16,9 +16,9 @@ if __name__ == "__main__":
         if obj["userId"] == Employee_Id:
             Employee_todos.append(obj)
 
-    name = requests.get(
+    username = requests.get(
         "https://jsonplaceholder.typicode.com/users" + f"/{Employee_Id}"
-    ).json()["name"]
+    ).json()["username"]
 
     filename = f"{Employee_Id}" + ".csv"
 
@@ -29,7 +29,7 @@ if __name__ == "__main__":
             writer.writerow(
                 [
                     f"{task['userId']}",
-                    f"{name}",
+                    f"{username}",
                     f"{task['completed']}",
                     f"{task['title']}",
                 ]
