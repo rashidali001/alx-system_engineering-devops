@@ -20,9 +20,9 @@ if __name__ == "__main__":
     completed_task = list()
 
     for task in Employee_todos:
-        if task["completed"] == False:
+        if task["completed"] is False:
             incomplete += 1
-        if task["completed"] == True:
+        if task["completed"] is True:
             completed += 1
             completed_task.append(task["title"])
 
