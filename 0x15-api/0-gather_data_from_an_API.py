@@ -27,7 +27,7 @@ if __name__ == "__main__":
             completed_task.append(task["title"])
 
     name = requests.get(
-        "https://jsonplaceholder.typicode.com/users" + f"/{Employee_Id}"
+    "https://jsonplaceholder.typicode.com/users" + f"/{Employee_Id}"
     ).json()["name"]
     total = completed + incomplete
 
