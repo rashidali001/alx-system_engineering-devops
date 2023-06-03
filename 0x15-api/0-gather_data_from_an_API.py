@@ -2,12 +2,11 @@
 ''' 0-gather_data_from_an_API 
 Gather data from an API
 '''
+import requests
+from sys import argv
 
 
 if __name__ == "__main__":
-    import requests
-    from sys import argv
-
     Employee_Id = int(argv[1])
     todos = requests.get("https://jsonplaceholder.typicode.com/todos").json()
     Employee_todos = list()
