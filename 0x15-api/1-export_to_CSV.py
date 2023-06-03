@@ -1,7 +1,7 @@
 #!/usr/bin/python3
-''' 1-export_to_CSV.py
+""" 1-export_to_CSV.py
 Export data to CSV
-'''
+"""
 import csv
 import requests
 from sys import argv
@@ -20,10 +20,17 @@ if __name__ == "__main__":
         "https://jsonplaceholder.typicode.com/users" + f"/{Employee_Id}"
     ).json()["name"]
 
-    filename = f"{Employee_Id}"+".csv"
+    filename = f"{Employee_Id}" + ".csv"
 
-    with open(filename, mode="w", newline='') as csv_file:
+    with open(filename, mode="w", newline="") as csv_file:
         writer = csv.writer(csv_file, quotechar='"', quoting=csv.QUOTE_ALL)
 
         for task in Employee_todos:
-            writer.writerow([f"{Employee_Id}", f"{name}", f"{task['completed']}", f"{task['title']}"])
+            writer.writerow(
+                [
+                    f"{task['userId']}",
+                    f"{name}",
+                    f"{task['completed']}",
+                    f"{task['title']}",
+                ]
+            )
