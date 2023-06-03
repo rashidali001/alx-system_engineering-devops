@@ -1,49 +1,37 @@
-"""0-gather_data_form_an_API
-
-using request/urllib to gather employee data
-"""
+#!/usr/bin/python3
+''' 0-gather_data_from_an_API 
+Gather data from an API
+'''
 
 
 if __name__ == "__main__":
+    import requests
     from sys import argv
-    from requests import get
 
-    user = argv[1]
-    data = get("https://jsonplaceholder.typicode.com/users"+"/"+user)
-    data = data.json()
-    name = data["name"]
-    todo_data = get("https://jsonplaceholder.typicode.com/todos").json()
+    Employee_Id = int(argv[1])
+    todos = requests.get("https://jsonplaceholder.typicode.com/todos").json()
+    Employee_todos = list()
+
+    for obj in todos:
+        if obj["userId"] == Employee_Id:
+            Employee_todos.append(obj)
+
     completed = 0
-    incompleted = 0
-    total= 0
-    completed_task_title_list = list()
-    
-    users_todos = list()
-    for user_todo in todo_data:
-        if user_todo["userId"] == int(user):
-            users_todos.append(user_todo)
-    
-    for task in users_todos:
+    incomplete = 0
+    completed_task = list()
+
+    for task in Employee_todos:
+        if task["completed"] == False:
+            incomplete += 1
         if task["completed"] == True:
             completed += 1
-            completed_task_title_list.append(task["title"])
-        else:
-            incompleted += 1
-    total = completed + incompleted
+            completed_task.append(task["title"])
+
+    name = requests.get(
+        "https://jsonplaceholder.typicode.com/users" + f"/{Employee_Id}"
+    ).json()["name"]
+    total = completed + incomplete
 
     print(f"Employee {name} is done with tasks({completed}/{total}):")
-    for title in completed_task_title_list:
-        print(f"\t {title}")
-        
-
-
-
-
-
-
-
-
-
-
-    
-
+    for task in completed_task:
+        print(f"\t{task}")
