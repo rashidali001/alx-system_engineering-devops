@@ -12,7 +12,9 @@ if __name__ == "__main__":
     all_Employess_dict = dict()
 
     for user in users:
-        todos = requests.get("https://jsonplaceholder.typicode.com/todos").json()
+        todos = requests.get(
+            "https://jsonplaceholder.typicode.com/todos"
+            ).json()
         user_task = list()
         for task in todos:
             if task["userId"] == user["id"]:
