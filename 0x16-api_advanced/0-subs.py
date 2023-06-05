@@ -38,8 +38,8 @@ headers["Authorization"] = f"bearer {TOKEN}"
 def number_of_subscribers(subreddit):
     try:
         res = requests.get(
-            f"https://oauth.reddit.com/r/{subreddit}/about", headers=headers
+            f"https://www.reddit.com/r/{subreddit}/about", headers=headers
         )
         return res.json()["data"]["subscribers"]
-    except:
+    except requests.exceptions.RequestException:
         return 0
