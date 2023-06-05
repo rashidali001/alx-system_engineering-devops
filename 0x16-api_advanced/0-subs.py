@@ -36,6 +36,10 @@ headers["Authorization"] = f"bearer {TOKEN}"
 
 # function to return subscribers
 def number_of_subscribers(subreddit):
+    """
+        get number of subscribers for a given subreddit
+        return 0 if invalid subreddit given
+    """
     try:
         res = requests.get(
             f"https://www.reddit.com/r/{subreddit}/about", headers=headers,
