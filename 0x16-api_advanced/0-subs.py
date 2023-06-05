@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """0-subs
 
-Returning number of given subscribers in a 
+Returning number of given subscribers in a
 given reddit
 """
 import requests
